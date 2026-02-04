@@ -1,0 +1,492 @@
+// export default function HeroSection() {
+//   return (
+//     <section className="relative w-full overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24">
+//       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+//         <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
+//           <div className="flex flex-col gap-6 text-left">
+//             <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-text-main dark:text-white w-fit">
+//               <span className="mr-1 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+//               Verified Sustainable Farms
+//             </div>
+
+//             <h1 className="text-4xl font-black leading-tight tracking-tighter sm:text-5xl xl:text-6xl text-text-main dark:text-white">
+//               Grow Your Wealth <br />
+//               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-green-600">
+//                 with Nature
+//               </span>
+//             </h1>
+
+//             <p className="text-lg font-normal leading-relaxed text-text-muted dark:text-gray-300 max-w-lg">
+//               Invest in verified farms and livestock projects. Secure your
+//               future with sustainable agricultural assets offering competitive
+//               ROI up to 35%.
+//             </p>
+
+//             <div className="flex flex-wrap gap-4 pt-2">
+//               <button className="flex h-12 min-w-[140px] items-center justify-center rounded-xl bg-primary px-6 text-base font-bold text-[#111b0d] hover:bg-[#3cd610] shadow-lg shadow-primary/25 transition-all">
+//                 Start Investing
+//               </button>
+//               <button className="flex h-12 min-w-[140px] items-center justify-center rounded-xl border-2 border-[#eaf3e7] dark:border-white/10 bg-transparent px-6 text-base font-bold text-text-main dark:text-white hover:bg-[#eaf3e7] dark:hover:bg-white/5 transition-all">
+//                 Learn More
+//               </button>
+//             </div>
+
+//             {/* Mini Social Proof */}
+//             <div className="mt-4 flex items-center gap-4 text-sm text-text-muted dark:text-gray-400">
+//               <div className="flex -space-x-2">
+//                 <div
+//                   className="h-8 w-8 rounded-full border-2 border-background-light bg-gray-300 bg-center bg-cover"
+//                   style={{
+//                     backgroundImage:
+//                       "url('https://lh3.googleusercontent.com/a/ACg8ocK7_placeholder1')",
+//                   }}
+//                 ></div>
+//                 <div
+//                   className="h-8 w-8 rounded-full border-2 border-background-light bg-gray-300 bg-center bg-cover"
+//                   style={{
+//                     backgroundImage:
+//                       "url('https://lh3.googleusercontent.com/a/ACg8ocK7_placeholder2')",
+//                   }}
+//                 ></div>
+//                 <div
+//                   className="h-8 w-8 rounded-full border-2 border-background-light bg-gray-300 bg-center bg-cover"
+//                   style={{
+//                     backgroundImage:
+//                       "url('https://lh3.googleusercontent.com/a/ACg8ocK7_placeholder3')",
+//                   }}
+//                 ></div>
+//               </div>
+//               <p>
+//                 Trusted by{" "}
+//                 <span className="font-bold text-text-main dark:text-white">
+//                   10,000+
+//                 </span>{" "}
+//                 investors
+//               </p>
+//             </div>
+//           </div>
+
+//           <div className="relative w-full aspect-4/3 lg:aspect-square">
+//             {/* Abstract Growth/Farm UI Composition */}
+//             <div
+//               className="absolute inset-0 rounded-2xl bg-center bg-cover shadow-2xl"
+//               style={{
+//                 backgroundImage:
+//                   'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQwAydN5iRcEYo3OvxfH1YQUZb17C9oWtcbpExLoY2JV4w2VKY1ttezydpVsYcA1K679VXhPZ0QRVAHR8KAZfS_mqTy2IcfWnqF3t-C4-qVWsdJa_XuhSCQuWEfSDdEAzhuILvf48ys3ouSobnmEqfndFYRFV3Ey6vjpnqwd25G_leBI4jiqE4asG0dX8wRg30RkqVm8vAnHUJlO-lSuDnXYnk6tyeYg8lSWpvSxV4Ue_QtcS-YvTv5QBwH5BdHBROd6V-5TSvpAw")',
+//               }}
+//             >
+//               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent rounded-2xl"></div>
+//             </div>
+
+//             {/* Floating Card 1 */}
+//             <div className="absolute -bottom-6 left-6 right-6 lg:left-5 lg:right-auto lg:bottom-12 bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-xl border border-primary/20 max-w-xs">
+//               <div className="flex items-center gap-3 mb-2">
+//                 <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-700 dark:text-green-400">
+//                   <span className="material-symbols-outlined text-xl">
+//                     trending_up
+//                   </span>
+//                 </div>
+//                 <div>
+//                   <p className="text-xs text-text-muted uppercase font-bold tracking-wider">
+//                     Average ROI
+//                   </p>
+//                   <p className="text-lg font-bold text-text-main dark:text-white">
+//                     +24.5%
+//                   </p>
+//                 </div>
+//               </div>
+//               <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 mt-1">
+//                 <div
+//                   className="bg-primary h-1.5 rounded-full"
+//                   style={{ width: "75%" }}
+//                 ></div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// app/components/HeroSlideshow.tsx
+
+
+
+"use client";
+
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+
+interface Slide {
+  id: number;
+  title: string;
+  subtitle: string;
+  cta: string;
+  cloudinaryId: string;
+  alt: string;
+  keywords: string[];
+}
+
+const slides: Slide[] = [
+  {
+    id: 1,
+    title: "Own Farms. Farm Remotely.",
+    subtitle:
+      "Become a real farmer without stepping on the field. Own agricultural projects and earn from every harvest.",
+    cta: "Start Farming Remotely",
+    cloudinaryId: "lxceeuvldtgiztniu5zw",
+    alt: "Aerial view of lush farm in Nigeria with workers in fields during golden hour",
+    keywords: [
+      "aerial farm nigeria",
+      "cassava plantation drone",
+      "maize farm africa",
+    ],
+  },
+  {
+    id: 2,
+    title: "At Agrofund Hub, You Own the Farm. We Run the Operations.",
+    subtitle:
+      "From planting to harvest, your farms are professionally managed while you track progress remotely.",
+    cta: "View Available Farms",
+    cloudinaryId: "yoezodszrvfn9pety8yx",
+    alt: "Large-scale commercial farm with rows of crops stretching into distance",
+    keywords: [
+      "commercial poultry farm",
+      "large scale cassava farm",
+      "agricultural rows",
+    ],
+  },
+  {
+    id: 3,
+    title: "Monitor Your Farms in Real Time.",
+    subtitle:
+      "Get updates, reports, and harvest timelines — all without leaving your location.",
+    cta: "See How It Works",
+    cloudinaryId: "q0wlttyz6rlygnzgpcog",
+    alt: "Farmer using tablet in field with crop monitoring overlay",
+    keywords: [
+      "smart farming africa",
+      "farmer using tablet",
+      "agricultural monitoring",
+    ],
+  },
+  {
+    id: 4,
+    title: "Farm for Profit. Grow Food for Millions.",
+    subtitle:
+      "Your remote farms create jobs, strengthen food supply, and deliver sustainable income.",
+    cta: "Farm With Impact",
+    cloudinaryId: "qhlx65zbbec9qstkrekw",
+    alt: "Smiling African farm workers harvesting fresh produce",
+    keywords: [
+      "african farmers harvest",
+      "farm workers nigeria",
+      "food production africa",
+    ],
+  },
+  {
+    id: 5,
+    title: "Earn From Every Harvest Cycle.",
+    subtitle:
+      "Structured farming projects with clear timelines, realistic yields, and shared success.",
+    cta: "Join as a Remote Farmer",
+    cloudinaryId: "mwm2ptdqgdt4w3oiv3fe",
+    alt: "Harvested crops neatly stacked and farmer checking results on phone",
+    keywords: [
+      "harvested crops africa",
+      "yam harvest",
+      "farmer checking phone field",
+    ],
+  },
+];
+
+export default function HeroSlideshow() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const goToSlide = (index: number) => {
+    if (index === currentSlide || isTransitioning) return;
+
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+
+    // Reset transitioning state after animation
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const nextSlide = () => {
+    goToSlide((currentSlide + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    goToSlide((currentSlide - 1 + slides.length) % slides.length);
+  };
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [currentSlide, isPlaying]);
+
+  // Preload next image
+  const nextSlideIndex = (currentSlide + 1) % slides.length;
+
+  return (
+    <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-gray-900">
+      {/* Loading state */}
+      {isLoading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-900">
+          <div className="relative">
+            <div className="h-16 w-16 animate-spin rounded-full border-4 border-emerald-500 border-t-transparent" />
+            <div className="absolute inset-0 m-auto h-8 w-8 animate-spin rounded-full border-2 border-white border-t-transparent" />
+          </div>
+        </div>
+      )}
+
+      {/* Background Images with Parallax Effect */}
+      <div className="absolute inset-0">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-105 pointer-events-none"
+              }`}
+          >
+            <CldImage
+              src={slide.cloudinaryId}
+              alt={slide.alt}
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
+              loading={index === 0 ? "eager" : "lazy"}
+              format="webp"
+              quality="auto"
+              crop="fill"
+              gravity="auto"
+              onLoad={() => setIsLoading(false)}
+              effects={[{ vignette: "50" }]}
+            />
+
+            {/* Custom gradient overlays for better text contrast */}
+            <div className="absolute inset-0 bg-linear-to-r from-gray-900/90 via-gray-900/70 to-gray-900/50" />
+            <div className="absolute inset-0 bg-linear-to-t from-gray-900/95 via-gray-900/60 to-transparent" />
+          </div>
+        ))}
+      </div>
+
+      {/* Content Container */}
+      <div className="relative h-full flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="max-w-2xl">
+            {/* Slide Indicator */}
+            <div className="flex items-center space-x-2 mb-8">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${index === currentSlide
+                      ? "w-12 bg-emerald-500 shadow-lg shadow-emerald-500/30"
+                      : "w-6 bg-white/40 hover:bg-white/60 hover:w-8"
+                    }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="space-y-8">
+              {/* Title with animated entrance */}
+              <h1
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight"
+                style={{
+                  animation: isTransitioning
+                    ? "none"
+                    : "fadeInUp 0.8s ease-out",
+                }}
+              >
+                {slides[currentSlide].title}
+              </h1>
+
+              {/* Subtitle */}
+              <p
+                className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-lg font-light"
+                style={{
+                  animation: isTransitioning
+                    ? "none"
+                    : "fadeInUp 0.8s ease-out 0.2s both",
+                }}
+              >
+                {slides[currentSlide].subtitle}
+              </p>
+
+              {/* CTA Button */}
+              <div
+                className="pt-4"
+                style={{
+                  animation: isTransitioning
+                    ? "none"
+                    : "fadeInUp 0.8s ease-out 0.4s both",
+                }}
+              >
+                <button className="group relative px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl hover:shadow-emerald-500/20">
+                  <span className="relative z-10 flex items-center space-x-3">
+                    <span className="text-lg">{slides[currentSlide].cta}</span>
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </span>
+                  <div className="absolute inset-0 bg-linear-to-r from-emerald-500 via-emerald-600 to-emerald-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-lg border border-emerald-400/30 group-hover:border-emerald-300/50 transition-colors duration-300" />
+                </button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="pt-8">
+                <div className="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+                  <div
+                    className={`h-full bg-linear-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-5000 ease-linear ${isPlaying ? "w-full" : "w-0"
+                      }`}
+                    style={{
+                      animation: isPlaying ? "progress 5s linear" : "none",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="absolute bottom-8 right-8 flex items-center space-x-4">
+        {/* Play/Pause */}
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 group border border-white/20 hover:border-white/40"
+          aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+        >
+          {isPlaying ? (
+            <Pause className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          ) : (
+            <Play className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          )}
+        </button>
+
+        {/* Previous/Next */}
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={prevSlide}
+            className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 group border border-white/20 hover:border-white/40"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6 text-white group-hover:translate-x-0.5 transition-transform" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 group border border-white/20 hover:border-white/40"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 text-white group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
+      </div>
+
+      {/* Slide Counter */}
+      <div className="absolute bottom-8 left-8 text-white/90 font-medium">
+        <span className="text-3xl font-bold bg-linear-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+          {String(currentSlide + 1).padStart(2, "0")}
+        </span>
+        <span className="mx-2 text-white/60">/</span>
+        <span className="text-lg text-white/70">
+          {String(slides.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Story Flow Indicator */}
+      <div className="absolute top-8 right-8 hidden lg:block">
+        <div className="flex flex-col items-end space-y-3">
+          <span className="text-sm text-white/60 uppercase tracking-wider font-medium">
+            Story Flow
+          </span>
+          <div className="flex items-center space-x-3">
+            {["Identity", "Ownership", "Transparency", "Impact", "Results"].map(
+              (label, index) => (
+                <button
+                  key={label}
+                  onClick={() => goToSlide(index)}
+                  className={`flex items-center space-x-2 transition-all duration-300 ${index === currentSlide
+                      ? "text-emerald-300"
+                      : "text-white/40 hover:text-white/70"
+                    }`}
+                >
+                  <span className="text-sm font-medium whitespace-nowrap">
+                    {label}
+                  </span>
+                  {index < 4 && (
+                    <div
+                      className={`w-6 h-px transition-colors duration-300 ${index === currentSlide
+                          ? "bg-emerald-500"
+                          : "bg-white/20 group-hover:bg-white/40"
+                        }`}
+                    />
+                  )}
+                </button>
+              )
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Keyboard navigation support */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Slide {currentSlide + 1} of {slides.length}:{" "}
+        {slides[currentSlide].title}
+      </div>
+
+      {/* CSS Animations */}
+      <style jsx global>{`
+        @keyframes progress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Preload next slide */
+        .preload-image {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+        }
+      `}</style>
+
+      {/* Preload next image */}
+      <div className="preload-image">
+        <CldImage
+          src={slides[nextSlideIndex].cloudinaryId}
+          alt="Preload"
+          width={100}
+          height={100}
+          quality="auto:low"
+        />
+      </div>
+    </section>
+  );
+}

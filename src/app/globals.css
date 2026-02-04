@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f8f6;
+  --foreground: #111b0d;
+
+  /* Primary Color Palette */
+  --primary-50: #f0fdf4;
+  --primary-100: #dcfce7;
+  --primary-500: #16a34a;
+  --primary-600: #059669;
+  --primary-700: #047857;
+
+  /* Agrofund Color System */
+  --primary: #46ec13;
+  --primary-dark: #3ac410;
+  --background-light: #f6f8f6;
+  --background-dark: #142210;
+  --surface-light: #ffffff;
+  --surface-dark: #1a2c15;
+  --text-main-light: #111b0d;
+  --text-main-dark: #f0fdf4;
+  --text-muted-light: #5e9a4c;
+  --text-muted-dark: #8fc78a;
+  --border-light: #d5e7cf;
+  --border-dark: #2a4225;
+
+  /* Secondary Colors */
+  --secondary-gold: #eab308;
+  --secondary-gray: #6b7280;
+  --cream-canvas: #fefce8;
+  --rich-soil: #92400e;
+}
+
+:root {
+  --font-sans: var(--font-noto-sans), sans-serif;
+  --font-display: var(--font-manrope), sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), "Noto Sans", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --font-mono: var(--font-geist-mono);
+
+  /* Extend colors */
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-background-light: var(--background-light);
+  --color-background-dark: var(--background-dark);
+  --color-surface-light: var(--surface-light);
+  --color-surface-dark: var(--surface-dark);
+  --color-text-main-light: var(--text-main-light);
+  --color-text-main-dark: var(--text-main-dark);
+  --color-text-muted-light: var(--text-muted-light);
+  --color-text-muted-dark: var(--text-muted-dark);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+
+  /* Custom theme colors */
+  --colors-primary: var(--primary);
+  --colors-primary-dark: var(--primary-dark);
+  --colors-background-light: var(--background-light);
+  --colors-background-dark: var(--background-dark);
+  --colors-surface-light: var(--surface-light);
+  --colors-surface-dark: var(--surface-dark);
+  --colors-text-main-light: var(--text-main-light);
+  --colors-text-main-dark: var(--text-main-dark);
+  --colors-text-muted-light: var(--text-muted-light);
+  --colors-text-muted-dark: var(--text-muted-dark);
+  --colors-border-light: var(--border-light);
+  --colors-border-dark: var(--border-dark);
+
+  /* Border radius */
+  --radius-default: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-primary: 0 4px 14px 0 rgba(70, 236, 19, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #142210;
+    --foreground: #f0fdf4;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Material Icons customization */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 1px solid var(--secondary-gray);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.bg-gradient-overlay {
+  background: linear-gradient(to top, rgba(20, 34, 16, 0.9), transparent 30%);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s ease-out forwards;
+}

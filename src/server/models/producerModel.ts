@@ -95,6 +95,15 @@ const producerSchema = new Schema(
       type: String,
       enum: ["male", "female"],
     },
+    level: {
+      type: Number,
+      default: 1,
+      enum: [1, 2, 3, 4, 5],
+    },
+    listedProduce: {
+      type: Number,
+      default: 0,
+    },
     farmImage1: {
       publicId: String,
       url: String,
@@ -113,6 +122,7 @@ const producerSchema = new Schema(
 
 producerSchema.index({ status: 1, createdAt: -1 });
 producerSchema.index({ isVerified: 1, createdAt: -1 });
+producerSchema.index({ level: 1, createdAt: -1 });
 
 export type Producer = InferSchemaType<typeof producerSchema>;
 export type ProducerDocument = HydratedDocument<Producer>;

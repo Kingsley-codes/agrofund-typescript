@@ -11,12 +11,12 @@ export const createProduce = async (
   res: Response,
 ) => {
   try {
-    const admin = req.admin;
+    const producer = req.producer;
 
-    if (!admin) {
+    if (!producer) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized access. Admin credentials required.",
+        message: "Unauthorized access. Producer credentials required.",
       });
     }
 
@@ -86,6 +86,7 @@ export const createProduce = async (
     const newProduce = await Produce.create({
       produceName,
       title,
+      producer: producer,
       totalUnit,
       minimumUnit,
       description,
@@ -126,11 +127,11 @@ export const deleteProduce = async (
   res: Response,
 ) => {
   try {
-    const admin = req.admin;
-    if (!admin) {
+    const producer = req.producer;
+    if (!producer) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized access. Admin credentials required.",
+        message: "Unauthorized access. Producer credentials required.",
       });
     }
     const { produceId } = req.params;
@@ -173,13 +174,14 @@ export const editProduce = async (
   res: Response,
 ) => {
   try {
-    const admin = req.admin;
-    if (!admin) {
+    const producer = req.producer;
+    if (!producer) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized access. Admin credentials required.",
+        message: "Unauthorized access. Producer credentials required.",
       });
     }
+
     const {
       produceId,
       produceName,
@@ -290,21 +292,106 @@ export const editProduce = async (
 
 export const getAllProduce = async (req: Request, res: Response) => {
   try {
-    const admin = req.admin;
-    if (!admin) {
+    const producer = req.producer;
+    if (!producer) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized access. Admin credentials required.",
+        message: "Unauthorized access. Producer credentials required.",
       });
     }
 
-    const produceList = await Produce.find().sort({ createdAt: -1 });
+    const produceList = await Produce.find({ producer: producer }).sort({
+      createdAt: -1,
+    });
 
     res.status(200).json({
       produce: produceList,
     });
   } catch (error: any) {
     console.error("Error fetching produce:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const suspendProduce = async (
+  req: Request<{ produceId: string }>,
+  res: Response,
+) => {
+  try {
+    const producer = req.producer;
+    if (!producer) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Producer credentials required.",
+      });
+    }
+    const { produceId } = req.params;
+
+    const produce = await Produce.findOne({
+      _id: produceId,
+      producer: producer,
+    });
+    if (!produce) {
+      return res.status(404).json({
+        message: "Produce not found",
+      });
+    }
+    if (produce.status === "suspended") {
+      return res.status(400).json({
+        message: "Produce is already suspended",
+      });
+    }
+    produce.status = "suspended";
+    await produce.save();
+    res.status(200).json({
+      message: "Produce suspended successfully",
+    });
+  } catch (error: any) {
+    console.error("Error suspending produce:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const activateProduce = async (
+  req: Request<{ produceId: string }>,
+  res: Response,
+) => {
+  try {
+    const producer = req.producer;
+    if (!producer) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Producer credentials required.",
+      });
+    }
+    const { produceId } = req.params;
+    const produce = await Produce.findOne({
+      _id: produceId,
+      producer: producer,
+    });
+    if (!produce) {
+      return res.status(404).json({
+        message: "Produce not found",
+      });
+    }
+    if (produce.status === "active") {
+      return res.status(400).json({
+        message: "Produce is already active",
+      });
+    }
+    produce.status = "active";
+    await produce.save();
+    res.status(200).json({
+      message: "Produce activated successfully",
+    });
+  } catch (error: any) {
+    console.error("Error activating produce:", error);
     res.status(500).json({
       message: "Server error",
       error: error.message,

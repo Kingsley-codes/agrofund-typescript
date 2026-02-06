@@ -14,7 +14,6 @@ const produceSchema = new Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
     },
     produceID: {
       type: String,
@@ -32,6 +31,11 @@ const produceSchema = new Schema(
     minimumUnit: {
       type: Number,
       required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "active", "suspended", "sold out"],
+      default: "pending",
     },
     remainingUnit: {
       type: Number,

@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import Producer from "../models/producerModel.ts";
 import User from "../models/userModel.ts";
+import Produce from "../models/produceModel.ts";
 
 type UserQuery = {
-  status?: "active" | "suspended";
+  status?: "active" | "suspended" | "pending";
   isVerified?: "true" | "false";
   page?: string;
 };
@@ -26,12 +27,12 @@ export const getAllProducers = async (
     const filter: any = {};
 
     // optional status filter
-    if (status === "active" || status === "suspended") {
+    if (status && ["active", "suspended", "pending"].includes(status)) {
       filter.status = status;
     }
 
     // optional isVerified filter
-    if (isVerified === "true" || isVerified === "false") {
+    if (isVerified && ["true", "false"].includes(isVerified)) {
       filter.isVerified = isVerified === "true";
     }
 
@@ -41,6 +42,7 @@ export const getAllProducers = async (
 
     const producers = await Producer.find(filter)
       .sort({ createdAt: -1 })
+      .select("-password")
       .skip(skip)
       .limit(limit);
 
@@ -80,12 +82,12 @@ export const getAllFarmers = async (
     const filter: any = {};
 
     // optional status filter
-    if (status === "active" || status === "suspended") {
+    if (status && ["active", "suspended"].includes(status)) {
       filter.status = status;
     }
 
     // optional isVerified filter
-    if (isVerified === "true" || isVerified === "false") {
+    if (isVerified && ["true", "false"].includes(isVerified)) {
       filter.isVerified = isVerified === "true";
     }
 
@@ -95,6 +97,7 @@ export const getAllFarmers = async (
 
     const farmers = await User.find(filter)
       .sort({ createdAt: -1 })
+      .select("-password")
       .skip(skip)
       .limit(limit);
 
@@ -157,6 +160,225 @@ export const verifyProducer = async (
     });
   } catch (error: any) {
     console.error("Error verifying producer:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const suspendFarmer = async (
+  req: Request<{ farmerId: string }>,
+  res: Response,
+) => {
+  try {
+    const admin = req.admin;
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Admin credentials required.",
+      });
+    }
+
+    const { farmerId } = req.params;
+    const farmer = await User.findById(farmerId);
+
+    if (!farmer) {
+      return res.status(404).json({
+        success: false,
+        message: "Farmer not found",
+      });
+    }
+
+    if (farmer.status === "suspended") {
+      return res.status(400).json({
+        success: false,
+        message: "Farmer is already suspended",
+      });
+    }
+
+    farmer.status = "suspended";
+    await farmer.save();
+    res.status(200).json({
+      success: true,
+      message: "Farmer suspended successfully",
+    });
+  } catch (error: any) {
+    console.error("Error suspending farmer:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const activateFarmer = async (
+  req: Request<{ farmerId: string }>,
+  res: Response,
+) => {
+  try {
+    const admin = req.admin;
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Admin credentials required.",
+      });
+    }
+    const { farmerId } = req.params;
+    const farmer = await User.findById(farmerId);
+    if (!farmer) {
+      return res.status(404).json({
+        success: false,
+        message: "Farmer not found",
+      });
+    }
+    if (farmer.status === "active") {
+      return res.status(400).json({
+        success: false,
+        message: "Farmer is already active",
+      });
+    }
+    farmer.status = "active";
+    await farmer.save();
+    res.status(200).json({
+      success: true,
+      message: "Farmer activated successfully",
+    });
+  } catch (error: any) {
+    console.error("Error activating farmer:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const suspendProducer = async (
+  req: Request<{ producerId: string }>,
+  res: Response,
+) => {
+  try {
+    const admin = req.admin;
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Admin credentials required.",
+      });
+    }
+    const { producerId } = req.params;
+    const producer = await Producer.findById(producerId);
+
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: "Producer not found",
+      });
+    }
+    if (producer.status === "suspended") {
+      return res.status(400).json({
+        success: false,
+        message: "Producer is already suspended",
+      });
+    }
+    producer.status = "suspended";
+    await producer.save();
+    res.status(200).json({
+      success: true,
+      message: "Producer suspended successfully",
+    });
+  } catch (error: any) {
+    console.error("Error suspending producer:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const activateProducer = async (
+  req: Request<{ producerId: string }>,
+  res: Response,
+) => {
+  try {
+    const admin = req.admin;
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Admin credentials required.",
+      });
+    }
+    const { producerId } = req.params;
+    const producer = await Producer.findById(producerId);
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: "Producer not found",
+      });
+    }
+    if (producer.status === "active") {
+      return res.status(400).json({
+        success: false,
+        message: "Producer is already active",
+      });
+    }
+    producer.status = "active";
+    await producer.save();
+    res.status(200).json({
+      success: true,
+      message: "Producer activated successfully",
+    });
+  } catch (error: any) {
+    console.error("Error activating producer:", error);
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+export const adminGetAllProduce = async (req: Request, res: Response) => {
+  try {
+    const admin = req.admin;
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access. Admin credentials required.",
+      });
+    }
+
+    const status = req.query.status as string | undefined;
+    const page = req.query.page as string | undefined;
+
+    const filter: any = {};
+
+    // status filter
+    if (
+      status &&
+      ["pending", "active", "suspended", "approved", "sold out"].includes(
+        status,
+      )
+    ) {
+      filter.status = status;
+    }
+
+    const limit = 10;
+    const pageNumber = Math.max(parseInt(page as string, 10) || 1, 1);
+    const skip = (pageNumber - 1) * limit;
+
+    const produceList = await Produce.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const total = await Produce.countDocuments(filter);
+
+    res.status(200).json({
+      produce: produceList,
+      page: pageNumber,
+      pages: Math.ceil(total / limit),
+    });
+  } catch (error: any) {
+    console.error("Error fetching produce:", error);
     res.status(500).json({
       message: "Server error",
       error: error.message,

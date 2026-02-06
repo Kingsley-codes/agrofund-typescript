@@ -5,6 +5,7 @@ import {
   deleteFromCloudinary,
 } from "../middleware/uploadMiddleware.ts";
 import { ProduceRequestBody } from "../interface/admin.interface.ts";
+import Producer from "../models/producerModel.ts";
 
 export const createProduce = async (
   req: Request<{}, {}, ProduceRequestBody>,
@@ -17,6 +18,23 @@ export const createProduce = async (
       return res.status(401).json({
         success: false,
         message: "Unauthorized access. Producer credentials required.",
+      });
+    }
+
+    const producerRecord = await Producer.findById(producer);
+
+    if (!producerRecord) {
+      return res.status(404).json({
+        success: false,
+        message: "Producer record not found",
+      });
+    }
+
+    if (producerRecord && producerRecord.listedProduce >= 7) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Produce listing limit reached. You can only list up to 7 produce items.",
       });
     }
 
@@ -46,13 +64,6 @@ export const createProduce = async (
     ) {
       return res.status(400).json({
         message: "All fields are required",
-      });
-    }
-
-    const existingProduce = await Produce.findOne({ title: title });
-    if (existingProduce) {
-      return res.status(400).json({
-        message: "Produce with this title already exists",
       });
     }
 
@@ -155,6 +166,14 @@ export const deleteProduce = async (
 
     if (produce.image3?.publicId) {
       await deleteFromCloudinary(produce.image3.publicId);
+    }
+
+    const producerRecord =
+      await Producer.findById(producer).select("listedProduce");
+
+    if (producerRecord && producerRecord.listedProduce > 0) {
+      producerRecord.listedProduce -= 1;
+      await producerRecord.save();
     }
 
     res.status(200).json({
@@ -346,6 +365,14 @@ export const suspendProduce = async (
     }
     produce.status = "suspended";
     await produce.save();
+
+    const producerRecord =
+      await Producer.findById(producer).select("listedProduce");
+
+    if (producerRecord && producerRecord.listedProduce > 0) {
+      producerRecord.listedProduce -= 1;
+      await producerRecord.save();
+    }
     res.status(200).json({
       message: "Produce suspended successfully",
     });
@@ -370,6 +397,24 @@ export const activateProduce = async (
         message: "Unauthorized access. Producer credentials required.",
       });
     }
+
+    const producerRecord = await Producer.findById(producer);
+
+    if (!producerRecord) {
+      return res.status(404).json({
+        success: false,
+        message: "Producer record not found",
+      });
+    }
+
+    if (producerRecord && producerRecord.listedProduce >= 7) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Produce listing limit reached. You can only list up to 7 produce items.",
+      });
+    }
+
     const { produceId } = req.params;
     const produce = await Produce.findOne({
       _id: produceId,
@@ -386,6 +431,10 @@ export const activateProduce = async (
       });
     }
     produce.status = "active";
+
+    producerRecord.listedProduce += 1;
+    await producerRecord.save();
+
     await produce.save();
     res.status(200).json({
       message: "Produce activated successfully",

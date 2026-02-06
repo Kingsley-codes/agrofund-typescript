@@ -34,7 +34,7 @@ const produceSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "approved", "active", "suspended", "sold out"],
+      enum: ["pending", "rejected", "active", "suspended", "sold out"],
       default: "pending",
     },
     remainingUnit: {

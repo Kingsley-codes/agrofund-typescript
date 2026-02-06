@@ -9,6 +9,7 @@ import adminAuthRouter from "./routes/adminAuthRoutes.js";
 import produceRouter from "./routes/produceRoutes.js";
 import adminUsersRouter from "./routes/adminUsersRoutes.js";
 import producerProduceRouter from "./routes/producerProduceRoutes.js";
+import adminProduceRouter from "./routes/adminProduceRoutes.js";
 
 // Rate limiting configuration
 const limiter = rateLimit({
@@ -31,6 +32,7 @@ app.use("/api", limiter);
 app.use("/api/auth", authRouter); // Register auth routes
 app.use("/api/produce", produceRouter); // Register produce routes
 app.use("/api/admin/auth", adminAuthRouter); // Register Admin auth routes
+app.use("/api/admin/produce", adminProduceRouter); // Register produce routes
 app.use("/api/admin/users", adminUsersRouter); // Register Admin users routes
 app.use("/api/producer/produce", producerProduceRouter); // Register produce routes
 

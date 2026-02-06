@@ -11,6 +11,11 @@ const refereeSchema = new Schema({
     maxlength: 11,
     sparse: true,
   },
+  producerID: {
+    type: String,
+    unique: true,
+    required: true,
+  },
   guarantorPhoto: {
     publicId: { type: String },
     url: { type: String },
@@ -66,8 +71,8 @@ const producerSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["active", "suspended"],
-      default: "active",
+      enum: ["active", "pending", "suspended"],
+      default: "pending",
     },
     referees: [refereeSchema],
     isVerified: {
@@ -105,6 +110,9 @@ const producerSchema = new Schema(
   },
   { timestamps: true },
 );
+
+producerSchema.index({ status: 1, createdAt: -1 });
+producerSchema.index({ isVerified: 1, createdAt: -1 });
 
 export type Producer = InferSchemaType<typeof producerSchema>;
 export type ProducerDocument = HydratedDocument<Producer>;

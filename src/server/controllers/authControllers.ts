@@ -27,6 +27,14 @@ const signToken = (id: string): string => {
   });
 };
 
+// Helper function to generate unique donor IDs
+export const generateFarmerID = () =>
+  "AGF-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+// Helper function to generate unique donor IDs
+export const generateProducerID = () =>
+  "AFP-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+
 // User Registration
 export const registerUser = async (
   req: Request<{}, {}, RegisterRequestBody>,
@@ -92,6 +100,7 @@ export const registerUser = async (
         password: hashedPassword,
         firstName,
         lastName,
+        farmerID: generateFarmerID(),
       });
     }
 
@@ -250,6 +259,7 @@ export const registerProducer = async (
         password: hashedPassword,
         firstName,
         lastName,
+        producerID: generateProducerID(),
       });
     }
 

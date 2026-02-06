@@ -20,6 +20,11 @@ const userSchema = new Schema(
       trim: true,
       lowercase: true,
     },
+    farmerID: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     phone: {
       type: String,
       sparse: true,
@@ -60,6 +65,9 @@ const userSchema = new Schema(
   },
   { timestamps: true },
 );
+
+userSchema.index({ status: 1, createdAt: -1 });
+userSchema.index({ isVerified: 1, createdAt: -1 });
 
 export type User = InferSchemaType<typeof userSchema>;
 export type UserDocument = HydratedDocument<User>;

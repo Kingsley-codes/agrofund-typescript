@@ -49,6 +49,19 @@ export const uploadProduceImages = multer({
   { name: "image3", maxCount: 1 },
 ]);
 
+export const uploadProducerImages = multer({
+  storage: produceStorage,
+  limits: { fileSize: MAX_FILE_SIZE },
+  fileFilter,
+}).fields([
+  { name: "profilePhoto", maxCount: 1 },
+  { name: "farmImage1", maxCount: 1 },
+  { name: "farmImage2", maxCount: 1 },
+  { name: "farmImage3", maxCount: 1 },
+  { name: "guarantorPhoto1", maxCount: 1 },
+  { name: "guarantorPhoto2", maxCount: 1 },
+]);
+
 export const uploadFiles = multer({
   storage: produceStorage,
   limits: { fileSize: MAX_FILE_SIZE },
